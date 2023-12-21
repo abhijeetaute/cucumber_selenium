@@ -11,9 +11,13 @@ public class Product {
 	}
 	
 	public WebElement getProductName() {
-		return product.findElement(By.xpath(".//span[@role='heading']"));
+		return product.findElement(By.xpath(".//h3"));
 	}
 	public WebElement getProductPrice() {
-		return product.findElement(By.xpath(".//span[@class='s-item__price']"));
+		return product.findElement(By.xpath(".//span[contains(@class,'amount')][last()]"));
+	}
+	
+	public WebElement getAddToCartButton() {
+		return product.findElement(By.xpath(".//a[@rel='nofollow']"));
 	}
 }

@@ -29,6 +29,7 @@ import com.automation.common.Hook;
 import com.google.common.collect.ImmutableMap;
 
 import io.cucumber.java.Before;
+import io.cucumber.java.BeforeAll;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseClass {
@@ -37,12 +38,13 @@ public class BaseClass {
 	//public static Logger logger=null ;
 	protected WebDriverWait wait;
 	
+	
 	public BaseClass() {
 		this.driver=Hook.driver;
 		PageFactory.initElements(driver, this);
 	}
 	
-	
+
 	  public void waitForElementToBePresent(WebElement element) { 
 	  wait=new WebDriverWait(driver, Duration.ofSeconds(Integer.parseInt(FrameworkConstants.DEFAULT_TIMEOUT)));
 	  wait.until(ExpectedConditions.visibilityOf(element));
@@ -70,6 +72,11 @@ public class BaseClass {
 	  
 	  public boolean isElementPresent(By locator) {
 		 return driver.findElements(locator).size()>0?true:false;
+	  }
+	  
+	  public void scrollToElement(WebElement element) {
+		  JavascriptExecutor js=(JavascriptExecutor)driver;
+		  js.executeScript("arguments[0].scrollIntoView()", element);
 	  }
 	/*
 	 * public void setAllureEnvironment() { allureEnvironmentWriter(

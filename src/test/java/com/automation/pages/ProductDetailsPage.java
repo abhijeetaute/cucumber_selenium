@@ -6,20 +6,27 @@ import org.openqa.selenium.WindowType;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-public class ProductDetailsPage extends BaseClass{
+import com.automation.loc.PageLocators.ProductDetailsPageLoc;
+
+public class ProductDetailsPage extends BaseClass implements ProductDetailsPageLoc{
 	
-	@FindBy(xpath="//h1[contains(@class,'x-item-title')]/span")
+	@FindBy(xpath=ProductName)
 	private WebElement itemTitle;
 	
-	@FindBy(xpath="//div[@data-testid='x-bin-action']/a")
-	private WebElement buyItNowButton;
+	@FindBy(xpath=Price)
+	private WebElement price;
 	
-	@FindBy(xpath="//div[@data-testid='x-atc-action']/a")
+	@FindBy(xpath=Quanity)
+	private WebElement quantity;
+	
+	@FindBy(xpath=AddToCartButton)
 	private WebElement addToCartButton;
 	
-	@FindBy(xpath="//input[@id='qtyTextBox']")
-	private WebElement quantityInput;
 	
+	public void waitForPageToLoad() {
+		waitForElementToBePresent(quantity);
+		waitForPageLoad();
+	}
 	
 	public void verifyProductDetailsPageIsOpened(String productName) {
 		waitForElementToBePresent(itemTitle);
@@ -32,8 +39,6 @@ public class ProductDetailsPage extends BaseClass{
 		
 	}
 	
-	public void fillAddressDetails() {
-		
-	}
+	
 
 }

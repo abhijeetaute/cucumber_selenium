@@ -1,3 +1,4 @@
+
 package com.automation.common;
 
 import java.time.Duration;
@@ -14,27 +15,25 @@ import io.cucumber.java.AfterAll;
 import io.cucumber.java.Before;
 import io.cucumber.java.BeforeAll;
 
-public class Hook{
-	
+public class Hook {
+
 	public static WebDriver driver;
-	LoginPage login=new LoginPage();
-   
+	LoginPage login = new LoginPage();
+
 	@BeforeAll()
 	public static void initialize() {
-		driver=new ChromeDriver();
+		driver = new ChromeDriver();
 		driver.get(GeneralUtilities.readProperty("baseUrl"));
 		driver.manage().window().maximize();
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-		
+
 	}
-   
-   @After
-   public void cleanUp() {
-	   login.logOut();
-   }
-   
-   @AfterAll
-   public static void tearDown() {
-	driver.close();   
-   }
+
+	/*
+	 * @After public void cleanUp() { login.logOut(); }
+	 */
+	@AfterAll
+	public static void tearDown() {
+		driver.close();
+	}
 }
