@@ -2,7 +2,7 @@
 Feature: Product cart feature
 
   Background:
- 	 Given User launch home page of application
+ 	#Given User launch home page of application
    When User navigate to login page
    And User login with <userName> and <password>
       | abhiaute123.aa@gmail.com | Abhijeet@999 |
